@@ -1,0 +1,35 @@
+
+@use "../../styles/mixin.scss" as mixin;
+.wrapper{
+    display: grid;
+    grid-template-columns: minmax(0, 0.2fr) minmax(0, 2fr) minmax(0, 1fr);
+    border: 2px solid #e0e0e0;
+    width: min(650px, 90%);
+    padding: 1rem;
+    background-color: mixin.$clr-primary;
+    h3{
+        font-size:mixin.$fs-larger;
+        font-weight:mixin.$fw-bold;
+         }
+    .exercises{
+        display: flex;
+        flex-direction: column;
+        font-family: mixin.$ff-secondary;
+        margin-left: 0.1rem;
+    }
+    .btnWrapper{
+       height: 100%;
+        width: 100%;
+       display: flex;
+       justify-content: flex-end;
+       align-items: flex-start;
+        button{
+            border: 0;
+            padding: 0.5rem 1rem;
+            border-radius: 0.2rem;
+            font-weight: mixin.$fw-bold;
+            cursor: pointer;
+        }
+    }
+}
+

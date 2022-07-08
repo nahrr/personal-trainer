@@ -1,0 +1,59 @@
+@use "../../styles/mixin.scss" as mixin;
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem;
+  gap: 0.5rem;
+  .header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    h3 {
+      font-size: mixin.$fs-larger;
+      font-weight: mixin.$fw-bold;
+    }
+    h4 {
+      font-size: mixin.$fs-large;
+      font-weight: mixin.$fw-bold;
+    }
+  }
+  textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    border-radius: mixin.$br-small;
+  }
+  button {
+    border: 0;
+    font-weight: mixin.$fw-bold;
+    cursor: pointer;
+  }
+  .video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .videoBtnWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+.blue {
+  color: blue;
+}

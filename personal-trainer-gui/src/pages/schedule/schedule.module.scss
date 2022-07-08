@@ -1,0 +1,9 @@
+@use "../../styles/mixin.scss" as mixin;
+
+.wrapper {
+  width: min(900px, 90%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}

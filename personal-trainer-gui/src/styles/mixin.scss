@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap");
+$clr-primary: #e4e4e4;
+
+$clr-secondary: #f6f6f6;
+
+$clr-body: #484646;
+$clr-header: #24292f;
+
+$ff-primary: "Palanquin", sans-serif;
+$ff-secondary: "Roboto", sans-serif;
+
+$fs-small: 0.75rem;
+$fs-normal: 1rem;
+$fs-large: 1.25rem;
+$fs-larger: 1.5rem;
+
+$fw-normal: 400;
+$fw-bold: 700;
+$fw-bolder: 900;
+
+$br-small: 0.2rem;
+$br-normal: 0.3rem;
+$br-large: 0.5rem;
+
+@mixin mobile {
+  @media (max-width: 767px) {
+    display: block;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 992px) {
+    display: block;
+  }
+}

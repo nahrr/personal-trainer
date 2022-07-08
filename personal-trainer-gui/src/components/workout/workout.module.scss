@@ -1,0 +1,20 @@
+
+@use "../../styles/mixin.scss" as mixin;
+.wrapper{
+    width: min(700px , 90%);
+    background-color: mixin.$clr-secondary;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    .btn{
+        border: 0;
+        padding: 0.5rem 1rem;
+        border-radius: 0.2rem;
+        font-weight: mixin.$fw-bold;
+        cursor: pointer;
+        background-color: lightgreen;
+        width: min(900px , 90%);
+        margin: 0 auto;
+    }
+}
