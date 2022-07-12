@@ -1,20 +1,164 @@
 @use "../../styles/mixin.scss" as mixin;
+
 .wrapper {
-  width: min(700px, 90%);
-  background-color: mixin.$clr-secondary;
+  width: min(800px, 90%);
+  background-color: mixin.$clr-card;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
+  font-family: mixin.$ff-primary;
+  border-radius: mixin.$br-large;
+  max-height: 80vh;
+  @include mixin.mobile {
+    padding: 0.5rem;
+    width: 95%;
+  }
+
   h1 {
     font-size: mixin.$fs-larger;
     font-weight: mixin.$fw-bold;
-  }
-  form {
-    display: grid;
-    .exercises {
-      display: flex;
-      flex-direction: column;
+    color: mixin.$clr-headers;
+    text-align: center;
+    @include mixin.mobile {
+      font-size: mixin.$fs-normal;
     }
   }
+
+  form {
+    display: grid;
+    gap: 2rem;
+    color: mixin.$clr-white;
+    padding: 1rem;
+    @include mixin.mobile {
+      padding: 0;
+    }
+    .exercises_wrapper {
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: 40vh;
+          @include mixin.mobile {
+        height: 25vh;
+      }
+    }
+    .workout_name_container {
+      padding: 2rem 0;
+      border-bottom: 2px solid mixin.$clr-headers;
+    }
+    .exercises {
+      display: grid;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 2px solid mixin.$clr-headers;
+      animation: append 0.3s linear;
+    }
+
+    .btn_container {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+      @include mixin.mobile {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .btn_generic {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        background-color: mixin.$clr-dark;
+        color: mixin.$clr-white;
+        border: 2px solid transparent;
+        .icon {
+          position: absolute;
+          right: 1rem;
+          font-size: 1.5rem;
+        }
+      }
+      .btn_generic:hover {
+        border: 2px solid mixin.$clr-success;
+      }
+    }
+
+    .inputContainer {
+      position: relative;
+
+      label {
+        position: absolute;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+        width: 100%;
+        left: 0.1rem;
+        top: 0.5rem;
+        padding: 0 0.2rem;
+        font-size: mixin.$fs-normal;
+      }
+
+      input {
+        background-color: transparent;
+        position: relative;
+        width: 100%;
+        padding: 0.5rem;
+        border: none;
+        border-bottom: 1px solid #757575;
+        &:focus {
+          outline: none;
+
+          ~ label {
+            outline: none;
+            top: -10px;
+            font-size: 13px;
+            background-color: transparent;
+          }
+        }
+      }
+      input:not(:placeholder-shown) + label {
+        top: -10px;
+        font-size: 13px;
+        background-color: transparent;
+        outline: none;
+      }
+      .required::after {
+        content: "*";
+        position: absolute;
+        right: 1rem;
+        color: mixin.$clr-warning;
+      }
+    }
+  }
+}
+
+@keyframes append {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 20px;
+  border: 3px solid transparent;
 }

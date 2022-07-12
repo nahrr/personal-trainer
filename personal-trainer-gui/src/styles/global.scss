@@ -68,11 +68,25 @@ svg {
 .App {
   min-height: 100vh;
   background-color: mixin.$clr-body;
+  display: grid;
+  grid-template-rows: 5rem auto;
+  gap: 5rem;
+  @include mixin.mobile {
+    gap: 1rem;
+  }
 }
 .page_wrapper {
-  padding: 10rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  height: 100%;
+}
+.btn {
+  border: 0;
+  padding: 0.5rem 1rem;
+  border-radius: mixin.$br-small;
+  font-weight: mixin.$fw-bold;
+  cursor: pointer;
+
+  margin: 0 auto;
 }

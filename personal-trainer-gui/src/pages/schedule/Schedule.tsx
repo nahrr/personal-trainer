@@ -1,22 +1,20 @@
 import WorkoutCard from "../../components/workoutCard/WorkoutCard";
 import { useFetchWorkOuts } from "../../hooks/ApiHook";
-import { ExercisesProps, WorkoutProps } from "../../types/Types";
+import { IExercise } from "../../interfaces/IExercise";
+import { IWorkout } from "../../interfaces/IWorkout";
 import styles from "./schedule.module.scss";
 
 const Schedule = () => {
   const { data, status, isSuccess } = useFetchWorkOuts();
-  console.log(data);
   return (
     <section className={styles.wrapper}>
       {data &&
-        data.map((workout: WorkoutProps) => (
+        data.map((workout: IWorkout) => (
           <WorkoutCard
             key={workout.id}
             id={workout.id}
             name={workout.name}
-            exercises={workout.exercises.map(
-              (exercise: ExercisesProps) => exercise
-            )}
+            exercises={workout.exercises.map((exercise: IExercise) => exercise)}
           />
         ))}
     </section>

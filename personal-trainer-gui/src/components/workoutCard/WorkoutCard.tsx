@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { ExercisesProps } from "../../types/Types";
+import { IExercise } from "../../interfaces/IExercise";
+
 import styles from "./workoutCard.module.scss";
 type Args = {
-  id: number;
+  id?: number;
   name: string;
-  exercises?: any;
+  exercises: IExercise[];
 };
 const WorkoutCard = ({ exercises, id, name }: Args) => {
   console.log(exercises);
@@ -14,9 +15,10 @@ const WorkoutCard = ({ exercises, id, name }: Args) => {
       <div>
         <h3>{name}</h3>
         <div className={styles.exercises}>
-          {exercises.map((exercise: ExercisesProps, i: any) => (
-            <span key={exercise.id}>{exercise.name}</span>
-          ))}
+          {exercises &&
+            exercises.map((exercise: IExercise) => (
+              <span key={exercise.id}>{exercise.name}</span>
+            ))}
         </div>
       </div>
       <div className={styles.btnWrapper}>
