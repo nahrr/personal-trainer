@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using personal_trainer_api.Data;
 using personal_trainer_api.Data.Models;
@@ -13,12 +15,13 @@ namespace personal_trainer_api.Controllers
     {
         private readonly ILogger<WorkoutController> _logger;
         private readonly IWorkoutRepo _repo;
+        private IValidator<WorkoutDto> _validator;
 
-        public WorkoutController(ILogger<WorkoutController> logger, IWorkoutRepo repo)
+        public WorkoutController(ILogger<WorkoutController> logger, IWorkoutRepo repo, IValidator<WorkoutDto> validator)
         {
             _logger = logger;
             _repo = repo;
-
+            _validator = validator;
         }
 
         [HttpGet("Get")]
@@ -37,12 +40,18 @@ namespace personal_trainer_api.Controllers
         }
 
         [HttpPost("Add")]
-        public async Task<ActionResult> Add(WorkoutDto dto)
+        public async Task<ActionResult> Add([FromBody] WorkoutDto dto)
         {
+            ValidationResult result = await _validator.ValidateAsync(dto);
+
+            if (!result.IsValid)
+            {
+                return BadRequest(result);
+            }
+
             var workout = await _repo.AddWorkout(dto);
 
             return Created($"/Test{workout}", workout);
-
         }
     }
 }

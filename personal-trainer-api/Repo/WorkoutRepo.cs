@@ -20,22 +20,57 @@ namespace personal_trainer_api.Repository
             _ctx = ctx;
         }
 
-        private static Workout DtoToEntity (Workout w, WorkoutDto dto)
+        private static Workout DtoToEntity(Workout w, WorkoutDto dto)
         {
-            w.Exercises = dto.Exercises;
+            var list = new List<Exercise>();
+            foreach (var item in dto.Exercises)
+            {
+                var exercise = new Exercise
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Reps = item.Reps,
+                    Sets = item.Sets,
+                    VideoUrl = item.VideoUrl,
+                };
+                list.Add(exercise);
+            }
+            w.Exercises = list;
             w.Name = dto.Name;
 
             return w;
-        } 
+        }
 
         private static WorkoutDto EntityToDto(Workout w)
         {
-            return new WorkoutDto(w.Id, w.Name, w.Exercises);
+            var list = new List<ExerciseDto>();
+            foreach (var item in w.Exercises)
+            {
+                var exercise = new ExerciseDto(
+                    item.Id,
+                    item.Name,
+                    item.Reps,
+                    item.Sets,
+                    item.VideoUrl
+                    );
+                list.Add(exercise);
+            }
+            return new WorkoutDto(w.Id, w.Name, list);
+        }
+
+        private static List<ExerciseDto> ExerciseToDto(List<Exercise> exercises)
+        {
+            List<ExerciseDto> list = new();
+            foreach (var exercise in exercises)
+            {
+                var dto = new ExerciseDto(exercise.Id, exercise.Name, exercise.Sets, exercise.Reps, exercise.VideoUrl);
+                list.Add(dto);
+            }
+            return list;
         }
 
         public async Task<WorkoutDto> AddWorkout(WorkoutDto dto)
         {
-
             var workout = new Workout();
 
             var entitiy = DtoToEntity(workout, dto);
@@ -50,7 +85,7 @@ namespace personal_trainer_api.Repository
         public async Task<List<WorkoutDto>> GetWorkouts()
         {
             return await _ctx.Workouts
-                        .Select(w => new WorkoutDto(w.Id, w.Name, w.Exercises))
+                        .Select(w => new WorkoutDto(w.Id, w.Name, ExerciseToDto(w.Exercises)))
                         .ToListAsync();
         }
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using personal_trainer_api.Data;
 
@@ -10,9 +11,10 @@ using personal_trainer_api.Data;
 namespace personal_trainer_api.Migrations
 {
     [DbContext(typeof(PersonalTrainerDbContext))]
-    partial class PersonalTrainerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220711111259_exercise")]
+    partial class exercise
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
