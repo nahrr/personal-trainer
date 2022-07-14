@@ -1,22 +1,39 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/header/Header";
-import AddWorkout from "./components/workout/AddWorkout";
+import Header from "./components/navBar/NavBar";
+import AddWorkout from "./components/addWorkout/AddWorkout";
 import Workout from "./components/workout/Workout";
 import Schedule from "./pages/schedule/Schedule";
 import "./styles/global.scss";
+import Profile from "./pages/profile/Profile";
+import { ProtectedRoute } from "./components/protectedRoute/ProtectedRoute";
+import { Home } from "./pages/home/Home";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
-        <div className="page_wrapper">
+        <main className="page_wrapper">
           <Routes>
-            <Route path="/" element={<Schedule />} />
-            <Route path="/workout/:exerciseId" element={<Workout />} />
-            <Route path="/add-workout" element={<AddWorkout />} />
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/add-workout"
+              element={<ProtectedRoute component={AddWorkout} />}
+            />
+            <Route
+              path="/profile"
+              element={<ProtectedRoute component={Profile} />}
+            />
+            <Route
+              path="/workout/:exerciseId"
+              element={<ProtectedRoute component={Workout} />}
+            />
+            <Route
+              path="/Schedule"
+              element={<ProtectedRoute component={Schedule} />}
+            />
           </Routes>
-        </div>
+        </main>
       </div>
     </BrowserRouter>
   );

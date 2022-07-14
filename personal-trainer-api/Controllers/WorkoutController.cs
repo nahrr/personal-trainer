@@ -1,5 +1,7 @@
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using personal_trainer_api.Data;
 using personal_trainer_api.Data.Models;
@@ -25,13 +27,17 @@ namespace personal_trainer_api.Controllers
         }
 
         [HttpGet("Get")]
+        [Authorize]
         public async Task<ActionResult<List<Workout>>> Get()
         {
+            var accessToken = await
+                HttpContext.GetTokenAsync("Bearer");
             var workouts = await _repo.GetWorkouts();
 
             return Ok(workouts);
         }
         [HttpGet("Get/{id}")]
+        [Authorize]
         public async Task<ActionResult<Workout>> Get(int id)
         {
             var workouts = await _repo.GetWorkout(id);
@@ -40,6 +46,7 @@ namespace personal_trainer_api.Controllers
         }
 
         [HttpPost("Add")]
+        [Authorize]
         public async Task<ActionResult> Add([FromBody] WorkoutDto dto)
         {
             ValidationResult result = await _validator.ValidateAsync(dto);
@@ -52,6 +59,16 @@ namespace personal_trainer_api.Controllers
             var workout = await _repo.AddWorkout(dto);
 
             return Created($"/Test{workout}", workout);
+        }
+
+        [HttpGet("private")]
+        [Authorize]
+        public IActionResult Private()
+        {
+            return Ok(new
+            {
+                Message = "Hello from a private endpoint! You need to be authenticated to see this."
+            });
         }
     }
 }

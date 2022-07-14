@@ -74,8 +74,7 @@ const AddWorkout = () => {
     [ref];
 
   return (
-    <div className={styles.wrapper}>
-      <h1>Add Workout</h1>
+    <section className={`${styles.wrapper} inner_page_wrapper`}>
       <form onSubmit={submitWorkout}>
         <div className={styles.btn_container}>
           <button
@@ -93,7 +92,7 @@ const AddWorkout = () => {
           </button>
         </div>
         <div
-          className={`${styles.inputContainer} ${styles.workout_name_container}`}
+          className={`${styles.input_container} ${styles.workout_name_container}`}
         >
           <input
             id="workout-name"
@@ -107,12 +106,15 @@ const AddWorkout = () => {
             Workout name
           </label>
         </div>
+        <div className={styles.num_of_exercises_wrapper}>
+          <h2>Number of exercises: {workout.exercises.length}</h2>
+        </div>
         <div className={styles.exercises_wrapper}>
           {workout &&
             workout.exercises.map((exercise, i) => {
               return (
                 <div key={exercise.id} className={styles.exercises}>
-                  <div className={styles.inputContainer}>
+                  <div className={styles.input_container}>
                     <input
                       id={`name-${exercise.id}`}
                       name="name"
@@ -129,11 +131,11 @@ const AddWorkout = () => {
                     </label>
                   </div>
 
-                  <div className={styles.inputContainer}>
+                  <div className={styles.input_container}>
                     <input
                       id={`sets-${exercise.id}`}
                       name="sets"
-                      type="text"
+                      type="number"
                       placeholder=" "
                       value={workout.exercises[i].sets}
                       onChange={(e) => setExerciseData(exercise.id, e)}
@@ -146,11 +148,11 @@ const AddWorkout = () => {
                     </label>
                   </div>
 
-                  <div className={styles.inputContainer}>
+                  <div className={styles.input_container}>
                     <input
                       id={`reps-${exercise.id}`}
                       name="reps"
-                      type="text"
+                      type="number"
                       placeholder=" "
                       value={workout.exercises[i].reps}
                       onChange={(e) => setExerciseData(exercise.id, e)}
@@ -163,7 +165,7 @@ const AddWorkout = () => {
                     </label>
                   </div>
 
-                  <div ref={ref} className={styles.inputContainer}>
+                  <div ref={ref} className={styles.input_container}>
                     <input
                       id={`video-${exercise.id}`}
                       name="videoUrl"
@@ -179,7 +181,7 @@ const AddWorkout = () => {
             })}
         </div>
       </form>
-    </div>
+    </section>
   );
 };
 

@@ -9,7 +9,7 @@ namespace personal_trainer_api.Validators
         {
             public WorkoutDtoValidator()
             {
-                RuleFor(x => x.Name).Length(0, 10);
+                RuleFor(x => x.Name).Length(1, 10);
                 RuleForEach(x => x.Exercises).SetValidator(new ExerciseDtoValidator());
             }
         }

@@ -8,23 +8,30 @@ type Args = {
   exercises: IExercise[];
 };
 const WorkoutCard = ({ exercises, id, name }: Args) => {
-  console.log(exercises);
   return (
     <div className={styles.wrapper}>
-      <div></div>
-      <div>
-        <h3>{name}</h3>
-        <div className={styles.exercises}>
-          {exercises &&
-            exercises.map((exercise: IExercise) => (
-              <span key={exercise.id}>{exercise.name}</span>
-            ))}
+      <div className={styles.exercises_wrapper}>
+        <div className={styles.header_wrapper}>
+          <div className={styles.col}>
+            <h3>{name}</h3>
+          </div>
+          <div className={styles.btn_wrapper}>
+            <Link to={`/workout/${id}`}>
+              <button>Details</button>
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className={styles.btnWrapper}>
-        <Link to={`workout/${id}`}>
-          <button>View workout</button>
-        </Link>
+        <div className={styles.divider}></div>
+        <div className={styles.exercises}>
+          <ol>
+            {exercises &&
+              exercises.map((exercise: IExercise) => (
+                <li key={exercise.id}>
+                  <span>{exercise.name}</span>
+                </li>
+              ))}
+          </ol>
+        </div>
       </div>
     </div>
   );

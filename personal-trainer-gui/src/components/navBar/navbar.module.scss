@@ -1,0 +1,86 @@
+@use "../../styles/mixin.scss" as mixin;
+.header {
+  background-color: mixin.$clr-header;
+  height: 5rem;
+  width: 100%;
+  top: 0;
+  padding: 0 2rem;
+  @include mixin.mobile {
+    padding: 0;
+  }
+  .nav_wrapper {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+  }
+  .nav_bar {
+    display: flex;
+    align-items: center;
+    width: min(50rem, 90%);
+    @include mixin.mobile {
+      width: 100%;
+    }
+
+    .ul_wrapper {
+      flex: 1 1 33%;
+      flex-grow: 1;
+      @include mixin.mobile {
+        position: fixed;
+        align-items: center;
+        bottom: 0;
+        width: 100%;
+        height: 5rem;
+        background-color: mixin.$clr-header;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        box-shadow: mixin.$bx-shadow;
+        display: flex;
+      }
+    }
+
+    .col {
+      flex: 1 1 33%;
+      margin: 0 2rem;
+    }
+    .logo_wrapper {
+      transform: scale(0.5);
+      overflow: hidden;
+      @include mixin.mobile {
+        position: absolute;
+        top: 2.5rem;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.5);
+      }
+    }
+
+    ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 2rem;
+      @include mixin.mobile {
+        flex-grow: 1;
+        font-size: mixin.$fs-small;
+      }
+
+      li {
+        text-decoration: 0;
+        a {
+          font-size: mixin.$fs-xl;
+          color: white;
+          text-decoration: 0;
+          display: grid;
+          place-items: center;
+        }
+      }
+    }
+  }
+}
+
+.nav_bar_btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}

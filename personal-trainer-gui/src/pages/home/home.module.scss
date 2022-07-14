@@ -1,0 +1,40 @@
+@use "../../styles/mixin.scss" as mixin;
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: min(650px, 90%);
+  background-color: mixin.$clr-card;
+  min-height: 7rem;
+  border-radius: mixin.$br-small;
+  box-shadow: mixin.$bx-shadow;
+  padding: 5rem 0;
+  div {
+    flex-grow: 2;
+  }
+  h1 {
+    font-size: mixin.$fs-xxxl;
+    font-weight: mixin.$fw-bold;
+    color: mixin.$clr-white;
+    text-transform: uppercase;
+    @include mixin.mobile {
+      font-size: mixin.$fs-xl;
+    }
+  }
+  h2 {
+    font-size: mixin.$fs-xl;
+    font-weight: mixin.$fw-bold;
+    color: mixin.$clr-headers;
+    @include mixin.mobile {
+      font-size: mixin.$fs-large;
+    }
+  }
+  p {
+    font-size: mixin.$fs-normal;
+    color: mixin.$clr-secondary;
+    @include mixin.mobile {
+      font-size: mixin.$fs-normal;
+    }
+  }
+}

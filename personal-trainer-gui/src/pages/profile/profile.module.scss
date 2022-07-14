@@ -1,0 +1,62 @@
+@use "../../styles/mixin.scss" as mixin;
+
+.wrapper {
+  display: flex;
+  width: min(650px, 90%);
+  padding: 1rem 2rem;
+  background-color: mixin.$clr-card;
+  min-height: 7rem;
+  border-radius: mixin.$br-small;
+  box-shadow: mixin.$bx-shadow;
+}
+.card {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  flex-grow: 1;
+  @include mixin.mobile {
+    grid-template-columns: 1fr;
+  }
+  .user_info {
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    h2 {
+      font-size: mixin.$fs-medium;
+      font-weight: mixin.$fw-bold;
+      color: mixin.$clr-headers;
+    }
+    p {
+      font-size: mixin.$fs-small;
+      font-weight: mixin.$fw-bold;
+      color: mixin.$clr-white;
+      @include mixin.mobile {
+        font-size: mixin.$fs-normal;
+      }
+    }
+  }
+  .img_wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    @include mixin.mobile {
+      grid-row: 1;
+      justify-content: center;
+    }
+    img {
+      border-radius: 50%;
+    }
+  }
+  .stats {
+    border-top: 1px solid mixin.$clr-divider;
+    width: 100%;
+    padding: 1rem 0;
+    grid-column: span 2;
+    color: mixin.$clr-white;
+    p {
+      span {
+        font-weight: mixin.$fw-bold;
+      }
+    }
+  }
+}

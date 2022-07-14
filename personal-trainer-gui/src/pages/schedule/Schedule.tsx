@@ -7,7 +7,7 @@ import styles from "./schedule.module.scss";
 const Schedule = () => {
   const { data, status, isSuccess } = useFetchWorkOuts();
   return (
-    <section className={styles.wrapper}>
+    <section className={`${styles.wrapper} inner_page_wrapper`}>
       {data &&
         data.map((workout: IWorkout) => (
           <WorkoutCard

@@ -1,7 +1,6 @@
 @use "../../styles/mixin.scss" as mixin;
 
 .wrapper {
-  width: min(800px, 90%);
   background-color: mixin.$clr-card;
   display: flex;
   flex-direction: column;
@@ -9,47 +8,59 @@
   padding: 1rem;
   font-family: mixin.$ff-primary;
   border-radius: mixin.$br-large;
-  max-height: 80vh;
+
   @include mixin.mobile {
     padding: 0.5rem;
     width: 95%;
   }
 
-  h1 {
-    font-size: mixin.$fs-larger;
-    font-weight: mixin.$fw-bold;
-    color: mixin.$clr-headers;
-    text-align: center;
-    @include mixin.mobile {
-      font-size: mixin.$fs-normal;
-    }
-  }
+  // h1 {
+  //   font-size: mixin.$fs-larger;
+  //   font-weight: mixin.$fw-bold;
+  //   color: mixin.$clr-headers;
+  //   text-align: center;
+  //   @include mixin.mobile {
+  //     font-size: mixin.$fs-normal;
+  //   }
+  // }
 
   form {
     display: grid;
+    grid-template-rows: 0.1fr 0.1fr auto;
     gap: 2rem;
     color: mixin.$clr-white;
     padding: 1rem;
+    flex-grow: 1;
+
     @include mixin.mobile {
       padding: 0;
+      max-height: 89vh;
+      overflow: auto;
+    }
+    .num_of_exercises_wrapper {
+      h2 {
+        font-size: mixin.$fs-medium;
+        font-weight: mixin.$fw-bold;
+        color: mixin.$clr-white;
+        text-align: center;
+        @include mixin.mobile {
+          font-size: mixin.$fs-normal;
+        }
+      }
     }
     .exercises_wrapper {
       overflow-y: auto;
+      max-height: 70vh;
       overflow-x: hidden;
-      max-height: 40vh;
-          @include mixin.mobile {
-        height: 25vh;
-      }
     }
     .workout_name_container {
-      padding: 2rem 0;
-      border-bottom: 2px solid mixin.$clr-headers;
+      padding: 1rem 0;
     }
     .exercises {
       display: grid;
       gap: 2rem;
       padding: 2rem 0;
-      border-bottom: 2px solid mixin.$clr-headers;
+      border-bottom: 2px solid mixin.$clr-warning;
       animation: append 0.3s linear;
     }
 
@@ -58,6 +69,7 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1rem;
       padding: 1rem;
+      position: sticky;
       @include mixin.mobile {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -82,7 +94,7 @@
       }
     }
 
-    .inputContainer {
+    .input_container {
       position: relative;
 
       label {
@@ -94,7 +106,7 @@
         left: 0.1rem;
         top: 0.5rem;
         padding: 0 0.2rem;
-        font-size: mixin.$fs-normal;
+        font-size: mixin.$fs-medium;
       }
 
       input {
@@ -103,21 +115,22 @@
         width: 100%;
         padding: 0.5rem;
         border: none;
-        border-bottom: 1px solid #757575;
+        border-bottom: 1px solid mixin.$clr-divider;
+        color: mixin.$clr-white;
         &:focus {
           outline: none;
 
           ~ label {
             outline: none;
             top: -10px;
-            font-size: 13px;
+            font-size: mixin.$fs-small;
             background-color: transparent;
           }
         }
       }
       input:not(:placeholder-shown) + label {
         top: -10px;
-        font-size: 13px;
+        font-size: mixin.$fs-small;
         background-color: transparent;
         outline: none;
       }

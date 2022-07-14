@@ -14,10 +14,12 @@
     h3 {
       font-size: mixin.$fs-larger;
       font-weight: mixin.$fw-bold;
+      color: mixin.$clr-headers;
     }
     h4 {
       font-size: mixin.$fs-large;
       font-weight: mixin.$fw-bold;
+      color: mixin.$clr-white;
     }
   }
   textarea {
@@ -29,31 +31,45 @@
   button {
     border: 0;
     font-weight: mixin.$fw-bold;
+    background-color: transparent;
+    font-size: mixin.$fs-large;
+    padding: 0.5rem 0;
     cursor: pointer;
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
   .video {
     width: 100%;
     aspect-ratio: 16/9;
     overflow: hidden;
-
     iframe {
       width: 100%;
       height: 100%;
     }
   }
   .videoBtnWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
     gap: 0.5rem;
+    place-items: center;
+    span {
+      color: mixin.$clr-white;
+      font-size: mixin.$fs-normal;
+      font-weight: mixin.$fs-small;
+    }
+    svg {
+      fill: mixin.$clr-primary;
+    }
   }
 }
-.red {
-  color: red;
+.unchecked {
+  fill: mixin.$clr-warning;
 }
-.green {
-  color: green;
+.checked {
+  fill: mixin.$clr-success;
 }
-.blue {
-  color: blue;
+.init {
+  fill: mixin.$clr-primary;
 }

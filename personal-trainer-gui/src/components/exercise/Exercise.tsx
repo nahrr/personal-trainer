@@ -23,11 +23,11 @@ const Exercise = ({ name, reps, sets, videoUrl }: Args) => {
   const getIconStyle = () => {
     switch (isChecked) {
       case CheckBtnEnum.initial:
-        return styles.blue;
+        return styles.init;
       case CheckBtnEnum.checked:
-        return styles.green;
+        return styles.checked;
       case CheckBtnEnum.unchecked:
-        return styles.red;
+        return styles.unchecked;
     }
   };
 

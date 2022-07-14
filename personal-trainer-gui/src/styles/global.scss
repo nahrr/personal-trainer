@@ -65,21 +65,41 @@ svg {
 
 /* Utiity classes*/
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .App {
   min-height: 100vh;
   background-color: mixin.$clr-body;
-  display: grid;
-  grid-template-rows: 5rem auto;
-  gap: 5rem;
   @include mixin.mobile {
     gap: 1rem;
   }
 }
 .page_wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: min(calc(100vw - 2rem), 1100px);
   height: 100%;
+  margin: 5rem auto 0;
+  @include mixin.mobile {
+    margin: 1rem auto 0;
+    padding-bottom: 1rem;
+  }
+}
+.inner_page_wrapper {
+  width: min(800px, 90%);
+  margin: 0 auto;
+  @include mixin.mobile {
+    width: 100%;
+    margin-bottom: 5rem;
+  }
 }
 .btn {
   border: 0;
@@ -87,6 +107,16 @@ svg {
   border-radius: mixin.$br-small;
   font-weight: mixin.$fw-bold;
   cursor: pointer;
+}
 
-  margin: 0 auto;
+.log_in_and_out_btn {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid mixin.$clr-primary;
+  color: mixin.$clr-primary;
+  svg {
+    font-size: mixin.$fs-larger;
+  }
 }
